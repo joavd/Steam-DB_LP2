@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Steam_DB {
-    static class Program {
+    public static class Program {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
