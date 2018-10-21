@@ -10,7 +10,7 @@ namespace Steam_DB {
         private StreamReader file;
         private string line;
 
-        public void ReadCSVFile(IDictionary<int, Game> database, 
+        public void ReadCSVFile(IDictionary<int, Game> database,
             string filePath) {
             file = File.OpenText(filePath);
 
@@ -19,6 +19,10 @@ namespace Steam_DB {
                 fields = line.Split(',');
 
                 //for a meter dentro da DB
+
+                for (int i = 0; i < fields.Length; i++) {
+
+                }
             }
         }
     }
