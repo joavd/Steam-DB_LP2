@@ -4,33 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Steam_DB {
-    public struct Game {
-        public int ID { get; }
-        public string Name { get; }
-        public DateTime ReleaseDate { get; }
-        public int RequiredAge { get; }
-        public int DLCCount { get; }
-        public int Metacritic { get; }
-        public int MovieCount { get; }
-        public int RecommendationCount { get; }
-        public int ScreenshotCount { get; }
-        public int Owners { get; }
-        public int NumberOfPlayers { get; }
-        public int AchievementCount { get; }
-        public bool ControllerSupport { get; }
-        public bool PlatformWindows { get; }
-        public bool PlatformLinux { get; }
-        public bool PlatformMac { get; }
-        public bool CategorySinglePlayer { get; }
-        public bool CategoryMultiplayer { get; }
-        public bool CategoryCoop { get; }
-        public bool CategoryIncludeLevelEditor { get; }
-        public bool CategoryVRSupport { get; }
-        public Uri SupportURL { get; }
-        public string AboutText { get; }
-        public Uri HeaderImage { get; }
-        public Uri Website { get; }
+namespace Steam_DB
+{
+    public class Game
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public int RequiredAge { get; set; }
+        public int DLCCount { get; set; }
+        public int Metacritic { get; set; }
+        public int MovieCount { get; set; }
+        public int RecommendationCount { get; set; }
+        public int ScreenshotCount { get; set; }
+        public int Owners { get; set; }
+        public int NumberOfPlayers { get; set; }
+        public int AchievementCount { get; set; }
+        public bool ControllerSupport { get; set; }
+        public bool PlatformWindows { get; set; }
+        public bool PlatformLinux { get; set; }
+        public bool PlatformMac { get; set; }
+        public bool CategorySinglePlayer { get; set; }
+        public bool CategoryMultiplayer { get; set; }
+        public bool CategoryCoop { get; set; }
+        public bool CategoryIncludeLevelEditor { get; set; }
+        public bool CategoryVRSupport { get; set; }
+        public Uri SupportURL { get; set; }
+        public string AboutText { get; set; }
+        public Uri HeaderImage { get; set; }
+        public Uri Website { get; set; }
 
         public Game(int id, string name, DateTime releaseDate, int requiredAge,
             int dlcCount, int metacritic, int movieCount,
@@ -38,7 +40,8 @@ namespace Steam_DB {
             int numberOfPlayers, int achievementCount, bool controller,
             bool windows, bool linux, bool mac, bool singlePlayer,
             bool multiplayer, bool coop, bool levelEditor, bool vrSupport,
-            Uri supportURL, string about, Uri image, Uri website) {
+            Uri supportURL, string about, Uri image, Uri website)
+        {
             ID = id;
             Name = name;
             ReleaseDate = releaseDate;
@@ -64,6 +67,10 @@ namespace Steam_DB {
             AboutText = about;
             HeaderImage = image;
             Website = website;
+        }
+
+        public Game()
+        {
         }
     }
 }
