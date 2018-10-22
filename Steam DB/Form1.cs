@@ -27,8 +27,12 @@ namespace Steam_DB {
 
             if (file.ShowDialog() == DialogResult.OK) {
                 string filePath = file.FileName;
-                
+
                 csvParser.ReadCSVFile(database, filePath);
+
+                var source = new BindingSource();
+                source.DataSource = database;
+                dataGridView1.DataSource = source;
             } else {
                 MessageBox.Show("Error! Please confirm it's the correct file" +
                     " and it's of type .csv");
