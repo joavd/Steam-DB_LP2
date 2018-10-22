@@ -10,9 +10,8 @@ using System.Windows.Forms;
 
 namespace Steam_DB {
     public partial class Form1 : Form {
-        private HashSet<Game> database;
+        private ICollection<Game> database;
         CSVParser csvParser;
-
 
         public Form1() {
             InitializeComponent();
@@ -26,12 +25,10 @@ namespace Steam_DB {
         private void btnReadFile_Click(object sender, EventArgs e) {
             OpenFileDialog file = new OpenFileDialog();
 
-            if (file.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            if (file.ShowDialog() == DialogResult.OK) {
                 string filePath = file.FileName;
                 
                 csvParser.ReadCSVFile(database, filePath);
-
-                dataGridView1.DataSource = database.ToList();
             } else {
                 MessageBox.Show("Error! Please confirm it's the correct file" +
                     " and it's of type .csv");
