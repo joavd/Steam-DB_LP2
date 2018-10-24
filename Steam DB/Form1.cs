@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Steam_DB {
     public partial class Form1 : Form {
-        private IDictionary<int, Game> database;
+        private ICollection<Game> database;
         CSVParser csvParser;
 
         public Form1() {
@@ -18,17 +18,21 @@ namespace Steam_DB {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            database = new Dictionary<int, Game>();
+            database = new HashSet<Game>();
             csvParser = new CSVParser();
         }
 
         private void btnReadFile_Click(object sender, EventArgs e) {
             OpenFileDialog file = new OpenFileDialog();
 
-            if (file.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            if (file.ShowDialog() == DialogResult.OK) {
                 string filePath = file.FileName;
-                
+
                 csvParser.ReadCSVFile(database, filePath);
+
+                var source = new BindingSource();
+                source.DataSource = database;
+                dataGridView1.DataSource = source;
             } else {
                 MessageBox.Show("Error! Please confirm it's the correct file" +
                     " and it's of type .csv");
