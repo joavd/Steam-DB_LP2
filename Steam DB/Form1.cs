@@ -69,38 +69,6 @@ namespace Steam_DB
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
-            //http://www.csharp-examples.net/dataview-rowfilter/
-
-            // Para strings
-            //dataTable.DefaultView.RowFilter =
-            //    string.Format("Name LIKE '*{0}*'", textBox1.Text);
-
-            //int comboType = 0;
-
-            //if (comboBox1.Text == "Name") { comboType = 0; }
-            //else if (comboBox1.Text == "ID") { comboType = 1; }
-
-    //        switch (comboType)
-    //        {
-    //            case 0:
-    //                dataTable.DefaultView.RowFilter =
-    //                   string.Format("" + comboBox1.Text + " LIKE '*" +
-    //                   txtName.Text);
-    //                break;
-    //            case 1:
-    //                dataTable.DefaultView.RowFilter =
-    //                    string.Format("Convert([" + comboBox1.Text + "]," +
-    //                    " System.String) LIKE '" + txtName.Text + "'");
-    //                break;
-    //            default:
-    //                MessageBox.Show("Error! Please confirm it's the correct file" +
-    //" and it's of type .csv", "Error");
-    //                break;
-
-    //        }
-            ////Para numeros
-            //dataTable.DefaultView.RowFilter =
-            //    string.Format("Convert([ID], System.String) LIKE '" + textBox1.Text + "'");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -121,6 +89,42 @@ namespace Steam_DB
                 checkWindows.Checked, checkLinux.Checked, checkMac.Checked,
                 checkSinglePlayer.Checked, checkMulti.Checked,
                 checkMultiCoop.Checked, checkEditNiveis.Checked, checkVR.Checked);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            //http://www.csharp-examples.net/dataview-rowfilter/
+
+            // Para strings
+            //dataTable.DefaultView.RowFilter =
+            //    string.Format("Name LIKE '*{0}*'", textBox1.Text);
+
+            int comboType = 0;
+
+            if (comboBox1.Text == "Name") { comboType = 0; }
+            else if (comboBox1.Text == "ID") { comboType = 1; }
+
+            switch (comboType)
+            {
+                case 0:
+                    dataTable.DefaultView.RowFilter =
+                       string.Format("" + comboBox1.Text + " LIKE '*" +
+                       textBox1.Text+"*' ");
+                    break;
+                case 1:
+                    dataTable.DefaultView.RowFilter =
+                        string.Format("Convert([" + comboBox1.Text + "]," +
+                        " System.String) LIKE '" + textBox1.Text + "'");
+                    break;
+                default:
+                    MessageBox.Show("Error! Please confirm it's the correct file" +
+    " and it's of type .csv", "Error");
+                    break;
+
+            }
+            ////Para numeros
+            //dataTable.DefaultView.RowFilter =
+            //    string.Format("Convert([ID], System.String) LIKE '" + textBox1.Text + "'");
         }
     }
 }
