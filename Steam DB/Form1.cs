@@ -9,25 +9,31 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FastMember;
 
-namespace Steam_DB {
-    public partial class Form1 : Form {
+namespace Steam_DB
+{
+    public partial class Form1 : Form
+    {
         private ICollection<Game> database;
         private DataTable dataTable;
         CSVParser csvParser;
 
-        public Form1() {
+        public Form1()
+        {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
+        private void Form1_Load(object sender, EventArgs e)
+        {
             database = new HashSet<Game>();
             csvParser = new CSVParser();
         }
 
-        private void btnReadFile_Click(object sender, EventArgs e) {
+        private void btnReadFile_Click(object sender, EventArgs e)
+        {
             OpenFileDialog file = new OpenFileDialog();
 
-            if (file.ShowDialog() == DialogResult.OK) {
+            if (file.ShowDialog() == DialogResult.OK)
+            {
                 string filePath = file.FileName;
 
                 csvParser.ReadCSVFile(database, filePath);
@@ -44,7 +50,8 @@ namespace Steam_DB {
                     "PlatformMac", "CategorySinglePlayer",
                     "CategoryMultiplayer", "CategoryCoop",
                     "CategoryIncludeLevelEditor", "CategoryVRSupport",
-                    "SupportURL", "AboutText", "HeaderImage", "Website")) {
+                    "SupportURL", "AboutText", "HeaderImage", "Website"))
+                {
                     dataTable.Load(reader);
                 }
                 source.DataSource = dataTable;
@@ -52,22 +59,68 @@ namespace Steam_DB {
                 dataGridView1.AllowUserToAddRows = false;
                 dataGridView1.DataSource = source;
 
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("Error! Please confirm it's the correct file" +
                     " and it's of type .csv", "Error");
             }
         }
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e) {
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
             //http://www.csharp-examples.net/dataview-rowfilter/
 
             // Para strings
             //dataTable.DefaultView.RowFilter =
-            //    string.Format("ID LIKE '*{0}*'", textBox1.Text);
+            //    string.Format("Name LIKE '*{0}*'", textBox1.Text);
 
-            //Para numeros
+            //int comboType = 0;
+
+            //if (comboBox1.Text == "Name") { comboType = 0; }
+            //else if (comboBox1.Text == "ID") { comboType = 1; }
+
+    //        switch (comboType)
+    //        {
+    //            case 0:
+    //                dataTable.DefaultView.RowFilter =
+    //                   string.Format("" + comboBox1.Text + " LIKE '*" +
+    //                   txtName.Text);
+    //                break;
+    //            case 1:
+    //                dataTable.DefaultView.RowFilter =
+    //                    string.Format("Convert([" + comboBox1.Text + "]," +
+    //                    " System.String) LIKE '" + txtName.Text + "'");
+    //                break;
+    //            default:
+    //                MessageBox.Show("Error! Please confirm it's the correct file" +
+    //" and it's of type .csv", "Error");
+    //                break;
+
+    //        }
+            ////Para numeros
+            //dataTable.DefaultView.RowFilter =
+            //    string.Format("Convert([ID], System.String) LIKE '" + textBox1.Text + "'");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             dataTable.DefaultView.RowFilter =
-                string.Format("Convert([ID], System.String) LIKE '%{0}%'", textBox1.Text);
+                string.Format("Convert([ID], System.String) LIKE '*{0}*'" +
+                " AND Name LIKE '%{1}%'" +
+                " AND Convert([ControllerSupport], System.String) LIKE '*{2}*'" +
+                " AND Convert([PlatformWindows], System.String) LIKE '*{3}*'" +
+                " AND Convert([PlatformLinux], System.String) LIKE '*{4}*'" +
+                " AND Convert([PlatformMac], System.String) LIKE '*{5}*'" +
+                " AND Convert([CategorySinglePlayer], System.String) LIKE '*{6}*'" +
+                " AND Convert([CategoryMultiplayer], System.String) LIKE '*{7}*'" +
+                " AND Convert([CategoryCoop], System.String) LIKE '*{8}*'" +
+                " AND Convert([CategoryIncludeLevelEditor], System.String) LIKE '*{9}*'" +
+                " AND Convert([CategoryVRSupport], System.String) LIKE '*{10}*'" +
+                "", txtID.Text, txtName.Text, checkSuppContrl.Checked,
+                checkWindows.Checked, checkLinux.Checked, checkMac.Checked,
+                checkSinglePlayer.Checked, checkMulti.Checked,
+                checkMultiCoop.Checked, checkEditNiveis.Checked, checkVR.Checked);
         }
     }
 }
