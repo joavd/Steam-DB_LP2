@@ -17,6 +17,7 @@ namespace Steam_DB
         private DataTable dataTable;
         CSVParser csvParser;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -73,22 +74,28 @@ namespace Steam_DB
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataTable.DefaultView.RowFilter =
-                string.Format("Convert([ID], System.String) LIKE '*{0}*'" +
-                " AND Name LIKE '%{1}%'" +
-                " AND Convert([ControllerSupport], System.String) LIKE '*{2}*'" +
-                " AND Convert([PlatformWindows], System.String) LIKE '*{3}*'" +
-                " AND Convert([PlatformLinux], System.String) LIKE '*{4}*'" +
-                " AND Convert([PlatformMac], System.String) LIKE '*{5}*'" +
-                " AND Convert([CategorySinglePlayer], System.String) LIKE '*{6}*'" +
-                " AND Convert([CategoryMultiplayer], System.String) LIKE '*{7}*'" +
-                " AND Convert([CategoryCoop], System.String) LIKE '*{8}*'" +
-                " AND Convert([CategoryIncludeLevelEditor], System.String) LIKE '*{9}*'" +
-                " AND Convert([CategoryVRSupport], System.String) LIKE '*{10}*'" +
-                "", txtID.Text, txtName.Text, checkSuppContrl.Checked,
-                checkWindows.Checked, checkLinux.Checked, checkMac.Checked,
-                checkSinglePlayer.Checked, checkMulti.Checked,
-                checkMultiCoop.Checked, checkEditNiveis.Checked, checkVR.Checked);
+            //dataTable.DefaultView.RowFilter =
+            //    string.Format("Convert([ID], System.String) LIKE '*{0}*'" +
+            //    " AND Name LIKE '%{1}%'" +
+            //    " AND Convert([ControllerSupport], System.String) LIKE '*{2}*'" +
+            //    " AND Convert([PlatformWindows], System.String) LIKE '*{3}*'" +
+            //    " AND Convert([PlatformLinux], System.String) LIKE '*{4}*'" +
+            //    " AND Convert([PlatformMac], System.String) LIKE '*{5}*'" +
+            //    " AND Convert([CategorySinglePlayer], System.String) LIKE '*{6}*'" +
+            //    " AND Convert([CategoryMultiplayer], System.String) LIKE '*{7}*'" +
+            //    " AND Convert([CategoryCoop], System.String) LIKE '*{8}*'" +
+            //    " AND Convert([CategoryIncludeLevelEditor], System.String) LIKE '*{9}*'" +
+            //    " AND Convert([CategoryVRSupport], System.String) LIKE '*{10}*'" +
+            //    "", txtID.Text, txtName.Text, checkSuppContrl.Checked,
+            //    checkWindows.Checked, checkLinux.Checked, checkMac.Checked,
+            //    checkSinglePlayer.Checked, checkMulti.Checked,
+            //    checkMultiCoop.Checked, checkEditNiveis.Checked, checkVR.Checked);
+
+            IEnumerable<Game> db2 = (from game in database
+                                    where game.ID == Convert.ToInt32(txtID.Text)
+                                    select game).ToList();
+            dataGridView1.DataSource = db2;
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -125,6 +132,10 @@ namespace Steam_DB
             ////Para numeros
             //dataTable.DefaultView.RowFilter =
             //    string.Format("Convert([ID], System.String) LIKE '" + textBox1.Text + "'");
+
+
+
+            
         }
     }
 }
