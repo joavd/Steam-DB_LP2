@@ -32,7 +32,8 @@ namespace Steam_DB {
                     }
 
                     DateTime.TryParse(fields[2], out DateTime time);
-                    supportURL = (Uri.TryCreate(fields[numSup], 0, out Uri sup)) ?
+                    supportURL = 
+                        (Uri.TryCreate(fields[numSup], 0, out Uri sup)) ? 
                         sup : null;
                     image = (Uri.TryCreate(fields[numImg], 0, out Uri img)) ?
                         img : null;
