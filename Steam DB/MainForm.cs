@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FastMember;
 
-namespace Steam_DB {
+namespace Steam_DB
+{
     /// <summary>
     /// Class that shows the Data and manages searches and filters
     /// </summary>
-    public partial class MainForm : Form {
+    public partial class MainForm : Form
+    {
         private ICollection<Game> database;
         private DataTable dataTable;
         private CSVParser csvParser;
@@ -23,12 +25,14 @@ namespace Steam_DB {
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         /// <param name="filepath"></param>
-        public MainForm(string filepath) {
+        public MainForm(string filepath)
+        {
             InitializeComponent();
             filePath = filepath;
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
+        private void Form1_Load(object sender, EventArgs e)
+        {
             database = new HashSet<Game>();
             csvParser = new CSVParser();
 
@@ -46,7 +50,8 @@ namespace Steam_DB {
                 "PlatformMac", "CategorySinglePlayer",
                 "CategoryMultiplayer", "CategoryCoop",
                 "CategoryIncludeLevelEditor", "CategoryVRSupport",
-                "SupportURL", "AboutText", "HeaderImage", "Website")) {
+                "SupportURL", "AboutText", "HeaderImage", "Website"))
+            {
                 dataTable.Load(reader);
             }
             source.DataSource = dataTable;
@@ -55,47 +60,51 @@ namespace Steam_DB {
             dataGridView1.DataSource = source;
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            //dataTable.DefaultView.RowFilter =
-            //    string.Format("Convert([ID], System.String) LIKE '*{0}*'" +
-            //    " AND Name LIKE '%{1}%'" +
-            //    " AND Convert([ControllerSupport], System.String) LIKE '*{2}*'" +
-            //    " AND Convert([PlatformWindows], System.String) LIKE '*{3}*'" +
-            //    " AND Convert([PlatformLinux], System.String) LIKE '*{4}*'" +
-            //    " AND Convert([PlatformMac], System.String) LIKE '*{5}*'" +
-            //    " AND Convert([CategorySinglePlayer], System.String) LIKE '*{6}*'" +
-            //    " AND Convert([CategoryMultiplayer], System.String) LIKE '*{7}*'" +
-            //    " AND Convert([CategoryCoop], System.String) LIKE '*{8}*'" +
-            //    " AND Convert([CategoryIncludeLevelEditor], System.String) LIKE '*{9}*'" +
-            //    " AND Convert([CategoryVRSupport], System.String) LIKE '*{10}*'" +
-            //    "", txtID.Text, txtName.Text, checkSuppContrl.Checked,
-            //    checkWindows.Checked, checkLinux.Checked, checkMac.Checked,
-            //    checkSinglePlayer.Checked, checkMulti.Checked,
-            //    checkMultiCoop.Checked, checkEditNiveis.Checked, checkVR.Checked);
-
-
+        private void button1_Click(object sender, EventArgs e)
+        {
             IEnumerable<Game> db2 =
                 (from game in database
-                 where (string.IsNullOrEmpty(txtID.Text) || 
+                 where (string.IsNullOrEmpty(txtID.Text) ||
                     game.ID.ToString().Contains(txtID.Text))
-                 && (string.IsNullOrEmpty(txtName.Text) ||
+
+                    && (string.IsNullOrEmpty(txtName.Text) ||
                     game.Name.ToLower().Contains(txtName.Text.ToLower()))
-                 //&& game.ControllerSupport == Convert.ToBoolean(checkSuppContrl.Checked)
-                 //&& game.PlatformWindows == Convert.ToBoolean(checkWindows.Checked)
-                 //&& game.PlatformLinux == Convert.ToBoolean(checkLinux.Checked)
-                 //&& game.PlatformMac == Convert.ToBoolean(checkMac.Checked)
-                 //&& game.CategorySinglePlayer == Convert.ToBoolean(checkSinglePlayer.Checked)
-                 //&& game.CategoryMultiplayer == Convert.ToBoolean(checkMulti.Checked)
-                 //&& game.CategoryCoop == Convert.ToBoolean(checkMultiCoop.Checked)
-                 //&& game.CategoryIncludeLevelEditor == Convert.ToBoolean(checkEditNiveis.Checked)
-                 //&& game.CategoryVRSupport == Convert.ToBoolean(checkVR.Checked)
+
+                    && ((checkSuppContrl.Checked == false) ||
+                    game.ControllerSupport == checkSuppContrl.Checked)
+
+                    && ((checkWindows.Checked != false) ||
+                    game.PlatformWindows == checkWindows.Checked)
+
+                    && ((checkLinux.Checked == false) ||
+                    game.PlatformLinux == checkLinux.Checked)
+
+                    && ((checkMac.Checked == false) ||
+                    game.PlatformMac == checkMac.Checked)
+
+                    && ((checkSinglePlayer.Checked == false) ||
+                    game.CategorySinglePlayer == checkSinglePlayer.Checked)
+
+                    && ((checkMulti.Checked == false) ||
+                    game.CategoryMultiplayer == checkMulti.Checked)
+
+                    && ((checkMultiCoop.Checked == false) ||
+                    game.CategoryCoop == checkMultiCoop.Checked)
+
+                    && ((checkEditNiveis.Checked == false) ||
+                    game.CategoryIncludeLevelEditor == checkEditNiveis.Checked)
+
+                    && ((checkVR.Checked == false) ||
+                    game.CategoryVRSupport == checkVR.Checked)
+
                  select game).ToList();
 
             dataGridView1.DataSource = db2;
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e) {
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
             //http://www.csharp-examples.net/dataview-rowfilter/
 
             // Para strings
@@ -106,7 +115,8 @@ namespace Steam_DB {
 
             if (comboBox1.Text == "Name") { comboType = 0; } else if (comboBox1.Text == "ID") { comboType = 1; }
 
-            switch (comboType) {
+            switch (comboType)
+            {
                 case 0:
                     dataTable.DefaultView.RowFilter =
                        string.Format("" + comboBox1.Text + " LIKE '*" +
