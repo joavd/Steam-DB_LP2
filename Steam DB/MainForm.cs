@@ -20,6 +20,7 @@ namespace Steam_DB
         private DataTable dataTable;
         private CSVParser csvParser;
         private string filePath;
+        Func<Game, Object> OrderByFunc = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -61,6 +62,8 @@ namespace Steam_DB
 
         private void button1_Click(object sender, EventArgs e)
         {
+            TransformCombobox();
+
             IEnumerable<Game> db2 =
                 (from game in database
                  where (string.IsNullOrEmpty(txtID.Text) ||
@@ -108,10 +111,23 @@ namespace Steam_DB
                     && ((checkVR.Checked == false) ||
                     game.CategoryVRSupport == checkVR.Checked)
 
+                    //orderby OrderByFunc descending
                  select game).ToList();
-
+           
             dataGridView1.DataSource = db2;
+        }
 
+        private void TransformCombobox()
+        {
+            if (cboxOrderBy.Text == "ID") { OrderByFunc = game => game.ID; }
+            else if (cboxOrderBy.Text == "Name") { OrderByFunc = game => game.Name; }
+            else if (cboxOrderBy.Text == "Release Date") { OrderByFunc = game => game.ReleaseDate; }
+            else if (cboxOrderBy.Text == "Number of DLC´s") { OrderByFunc = game => game.DLCCount; }
+            else if (cboxOrderBy.Text == "Metacritic") { OrderByFunc = game => game.Metacritic; }
+            else if (cboxOrderBy.Text == "Recomendations") { OrderByFunc = game => game.RecommendationCount; }
+            else if (cboxOrderBy.Text == "People who have") { OrderByFunc = game => game.Owners; }
+            else if (cboxOrderBy.Text == "People who play") { OrderByFunc = game => game.NumberOfPlayers; }
+            else if (cboxOrderBy.Text == "Achievements") { OrderByFunc = game => game.AchievementCount; }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
