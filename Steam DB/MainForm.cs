@@ -39,7 +39,6 @@ namespace Steam_DB
             csvParser.ReadCSVFile(database, filePath);
 
             var source = new BindingSource();
-            //source.DataSource = database;
             dataTable = new DataTable();
 
             using (var reader = ObjectReader.Create(database, "ID", "Name",
@@ -69,6 +68,18 @@ namespace Steam_DB
 
                     && (string.IsNullOrEmpty(txtName.Text) ||
                     game.Name.ToLower().Contains(txtName.Text.ToLower()))
+
+                    && (string.IsNullOrEmpty(dateTimePicker1.Text) ||
+                    game.ReleaseDate >= dateTimePicker1.Value.Date)
+
+                    && (string.IsNullOrEmpty(txtIdade.Text) ||
+                    game.RequiredAge >= Convert.ToInt32(txtIdade.Text))
+
+                    && (string.IsNullOrEmpty(txtMetacritic.Text) ||
+                    game.Metacritic >= Convert.ToInt32(txtMetacritic.Text))
+
+                    && (string.IsNullOrEmpty(txtRecomend.Text) ||
+                    game.RecommendationCount >= Convert.ToInt32(txtRecomend.Text))
 
                     && ((checkSuppContrl.Checked == false) ||
                     game.ControllerSupport == checkSuppContrl.Checked)
@@ -105,15 +116,10 @@ namespace Steam_DB
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //http://www.csharp-examples.net/dataview-rowfilter/
-
-            // Para strings
-            //dataTable.DefaultView.RowFilter =
-            //    string.Format("Name LIKE '*{0}*'", textBox1.Text);
-
             int comboType = 0;
 
-            if (comboBox1.Text == "Name") { comboType = 0; } else if (comboBox1.Text == "ID") { comboType = 1; }
+            if (comboBox1.Text == "Name") { comboType = 0; }
+            else if (comboBox1.Text == "ID") { comboType = 1; }
 
             switch (comboType)
             {
@@ -133,13 +139,6 @@ namespace Steam_DB
                     break;
 
             }
-            ////Para numeros
-            //dataTable.DefaultView.RowFilter =
-            //    string.Format("Convert([ID], System.String) LIKE '" + textBox1.Text + "'");
-
-
-
-
         }
     }
 }
