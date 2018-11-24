@@ -77,7 +77,7 @@ namespace Steam_DB {
             IEnumerable<Game> db2 =
                 (from game in database
                  where game.ID == Convert.ToInt32(txtID.Text)
-                 && game.Name == txtID.Name
+                 && game.Name == txtName.Text
                  //&& game.ControllerSupport == Convert.ToBoolean(checkSuppContrl.Checked)
                  //&& game.PlatformWindows == Convert.ToBoolean(checkWindows.Checked)
                  //&& game.PlatformLinux == Convert.ToBoolean(checkLinux.Checked)
