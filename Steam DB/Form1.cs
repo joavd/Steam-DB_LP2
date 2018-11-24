@@ -91,9 +91,20 @@ namespace Steam_DB
             //    checkSinglePlayer.Checked, checkMulti.Checked,
             //    checkMultiCoop.Checked, checkEditNiveis.Checked, checkVR.Checked);
 
-            IEnumerable<Game> db2 = (from game in database
-                                    where game.ID == Convert.ToInt32(txtID.Text)
-                                    select game).ToList();
+            IEnumerable<Game> db2 =
+                (from game in database
+                 where game.ID == Convert.ToInt32(txtID.Text)
+                 && game.Name == txtID.Name
+                 //&& game.ControllerSupport == Convert.ToBoolean(checkSuppContrl.Checked)
+                 //&& game.PlatformWindows == Convert.ToBoolean(checkWindows.Checked)
+                 //&& game.PlatformLinux == Convert.ToBoolean(checkLinux.Checked)
+                 //&& game.PlatformMac == Convert.ToBoolean(checkMac.Checked)
+                 //&& game.CategorySinglePlayer == Convert.ToBoolean(checkSinglePlayer.Checked)
+                 //&& game.CategoryMultiplayer == Convert.ToBoolean(checkMulti.Checked)
+                 //&& game.CategoryCoop == Convert.ToBoolean(checkMultiCoop.Checked)
+                 //&& game.CategoryIncludeLevelEditor == Convert.ToBoolean(checkEditNiveis.Checked)
+                 //&& game.CategoryVRSupport == Convert.ToBoolean(checkVR.Checked)
+                 select game).ToList();
             dataGridView1.DataSource = db2;
 
         }
@@ -116,7 +127,7 @@ namespace Steam_DB
                 case 0:
                     dataTable.DefaultView.RowFilter =
                        string.Format("" + comboBox1.Text + " LIKE '*" +
-                       textBox1.Text+"*' ");
+                       textBox1.Text + "*' ");
                     break;
                 case 1:
                     dataTable.DefaultView.RowFilter =
@@ -135,7 +146,7 @@ namespace Steam_DB
 
 
 
-            
+
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Steam_DB {
     public struct Game {
         public int ID { get; }
-        public string Name { get; set; }
+        public string Name { get; }
         public DateTime ReleaseDate { get; }
         public int RequiredAge { get; }
         public int DLCCount { get; }
