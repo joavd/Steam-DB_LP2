@@ -35,8 +35,8 @@ namespace Steam_DB {
                 mainForm.Show();
 
             } else {
-                MessageBox.Show("Error! Please confirm it's the correct file" +
-                    " and it's of type .csv", "Error");
+                MessageBox.Show("Please confirm it's the correct file" +
+                    " and it's of type .csv", "Error!");
             }
         }
     }

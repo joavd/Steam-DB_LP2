@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FastMember, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FastMember.1.4.1\lib\net461\FastMember.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,6 +53,12 @@
     <Compile Include="AskFileForm.Designer.cs">
       <DependentUpon>AskFileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsForm.Designer.cs">
+      <DependentUpon>DetailsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Game.cs" />
     <Compile Include="CSVParser.cs" />
     <Compile Include="MainForm.cs">
@@ -69,6 +72,9 @@
     <EmbeddedResource Include="AskFileForm.resx">
       <DependentUpon>AskFileForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetailsForm.resx">
+      <DependentUpon>DetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,7 +87,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

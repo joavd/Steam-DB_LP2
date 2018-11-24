@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.checkSuppContrl = new System.Windows.Forms.CheckBox();
             this.checkWindows = new System.Windows.Forms.CheckBox();
@@ -38,8 +38,8 @@
             this.checkVR = new System.Windows.Forms.CheckBox();
             this.lblID = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonFilter = new System.Windows.Forms.Button();
+            this.textBoxValue = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.labelData = new System.Windows.Forms.Label();
             this.txtIdade = new System.Windows.Forms.TextBox();
@@ -54,66 +54,64 @@
             this.label2 = new System.Windows.Forms.Label();
             this.labelOrderBy = new System.Windows.Forms.Label();
             this.cboxOrderBy = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 174);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(8, 149);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1240, 571);
+            this.dataGridView1.Size = new System.Drawing.Size(930, 468);
             this.dataGridView1.TabIndex = 1;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(421, 69);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Location = new System.Drawing.Point(317, 69);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(132, 22);
+            this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 2;
             // 
-            // comboBox1
+            // comboBoxType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxType.FormattingEnabled = true;
+            this.comboBoxType.Items.AddRange(new object[] {
             "ID",
             "Name"});
-            this.comboBox1.Location = new System.Drawing.Point(95, 109);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 3;
+            this.comboBoxType.Location = new System.Drawing.Point(82, 74);
+            this.comboBoxType.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxType.Name = "comboBoxType";
+            this.comboBoxType.Size = new System.Drawing.Size(92, 21);
+            this.comboBoxType.TabIndex = 3;
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(421, 41);
-            this.txtID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtID.Location = new System.Drawing.Point(273, 38);
+            this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(132, 22);
+            this.txtID.Size = new System.Drawing.Size(100, 20);
             this.txtID.TabIndex = 4;
             // 
             // checkSuppContrl
             // 
             this.checkSuppContrl.AutoSize = true;
-            this.checkSuppContrl.Location = new System.Drawing.Point(398, 105);
-            this.checkSuppContrl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkSuppContrl.Location = new System.Drawing.Point(294, 104);
+            this.checkSuppContrl.Margin = new System.Windows.Forms.Padding(2);
             this.checkSuppContrl.Name = "checkSuppContrl";
-            this.checkSuppContrl.Size = new System.Drawing.Size(129, 21);
+            this.checkSuppContrl.Size = new System.Drawing.Size(110, 17);
             this.checkSuppContrl.TabIndex = 5;
-            this.checkSuppContrl.Text = "Suporte Control";
+            this.checkSuppContrl.Text = "Controller Support";
             this.checkSuppContrl.UseVisualStyleBackColor = true;
             // 
             // checkWindows
             // 
             this.checkWindows.AutoSize = true;
-            this.checkWindows.Checked = true;
-            this.checkWindows.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkWindows.Location = new System.Drawing.Point(398, 131);
-            this.checkWindows.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkWindows.Location = new System.Drawing.Point(294, 125);
+            this.checkWindows.Margin = new System.Windows.Forms.Padding(2);
             this.checkWindows.Name = "checkWindows";
-            this.checkWindows.Size = new System.Drawing.Size(86, 21);
+            this.checkWindows.Size = new System.Drawing.Size(70, 17);
             this.checkWindows.TabIndex = 6;
             this.checkWindows.Text = "Windows";
             this.checkWindows.UseVisualStyleBackColor = true;
@@ -121,10 +119,10 @@
             // checkLinux
             // 
             this.checkLinux.AutoSize = true;
-            this.checkLinux.Location = new System.Drawing.Point(546, 105);
-            this.checkLinux.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkLinux.Location = new System.Drawing.Point(406, 104);
+            this.checkLinux.Margin = new System.Windows.Forms.Padding(2);
             this.checkLinux.Name = "checkLinux";
-            this.checkLinux.Size = new System.Drawing.Size(63, 21);
+            this.checkLinux.Size = new System.Drawing.Size(51, 17);
             this.checkLinux.TabIndex = 7;
             this.checkLinux.Text = "Linux";
             this.checkLinux.UseVisualStyleBackColor = true;
@@ -132,10 +130,10 @@
             // checkMac
             // 
             this.checkMac.AutoSize = true;
-            this.checkMac.Location = new System.Drawing.Point(546, 133);
-            this.checkMac.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkMac.Location = new System.Drawing.Point(406, 127);
+            this.checkMac.Margin = new System.Windows.Forms.Padding(2);
             this.checkMac.Name = "checkMac";
-            this.checkMac.Size = new System.Drawing.Size(56, 21);
+            this.checkMac.Size = new System.Drawing.Size(47, 17);
             this.checkMac.TabIndex = 8;
             this.checkMac.Text = "Mac";
             this.checkMac.UseVisualStyleBackColor = true;
@@ -143,10 +141,10 @@
             // checkSinglePlayer
             // 
             this.checkSinglePlayer.AutoSize = true;
-            this.checkSinglePlayer.Location = new System.Drawing.Point(634, 105);
-            this.checkSinglePlayer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkSinglePlayer.Location = new System.Drawing.Point(472, 104);
+            this.checkSinglePlayer.Margin = new System.Windows.Forms.Padding(2);
             this.checkSinglePlayer.Name = "checkSinglePlayer";
-            this.checkSinglePlayer.Size = new System.Drawing.Size(109, 21);
+            this.checkSinglePlayer.Size = new System.Drawing.Size(84, 17);
             this.checkSinglePlayer.TabIndex = 9;
             this.checkSinglePlayer.Text = "SinglePlayer";
             this.checkSinglePlayer.UseVisualStyleBackColor = true;
@@ -154,10 +152,10 @@
             // checkMulti
             // 
             this.checkMulti.AutoSize = true;
-            this.checkMulti.Location = new System.Drawing.Point(634, 133);
-            this.checkMulti.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkMulti.Location = new System.Drawing.Point(472, 127);
+            this.checkMulti.Margin = new System.Windows.Forms.Padding(2);
             this.checkMulti.Name = "checkMulti";
-            this.checkMulti.Size = new System.Drawing.Size(99, 21);
+            this.checkMulti.Size = new System.Drawing.Size(77, 17);
             this.checkMulti.TabIndex = 10;
             this.checkMulti.Text = "MultiPlayer";
             this.checkMulti.UseVisualStyleBackColor = true;
@@ -165,10 +163,10 @@
             // checkMultiCoop
             // 
             this.checkMultiCoop.AutoSize = true;
-            this.checkMultiCoop.Location = new System.Drawing.Point(762, 105);
-            this.checkMultiCoop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkMultiCoop.Location = new System.Drawing.Point(568, 104);
+            this.checkMultiCoop.Margin = new System.Windows.Forms.Padding(2);
             this.checkMultiCoop.Name = "checkMultiCoop";
-            this.checkMultiCoop.Size = new System.Drawing.Size(113, 21);
+            this.checkMultiCoop.Size = new System.Drawing.Size(89, 17);
             this.checkMultiCoop.TabIndex = 11;
             this.checkMultiCoop.Text = "Multi P. Coop";
             this.checkMultiCoop.UseVisualStyleBackColor = true;
@@ -176,21 +174,21 @@
             // checkEditNiveis
             // 
             this.checkEditNiveis.AutoSize = true;
-            this.checkEditNiveis.Location = new System.Drawing.Point(762, 132);
-            this.checkEditNiveis.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkEditNiveis.Location = new System.Drawing.Point(568, 126);
+            this.checkEditNiveis.Margin = new System.Windows.Forms.Padding(2);
             this.checkEditNiveis.Name = "checkEditNiveis";
-            this.checkEditNiveis.Size = new System.Drawing.Size(109, 21);
+            this.checkEditNiveis.Size = new System.Drawing.Size(82, 17);
             this.checkEditNiveis.TabIndex = 12;
-            this.checkEditNiveis.Text = "Editor Niveis";
+            this.checkEditNiveis.Text = "Level Editor";
             this.checkEditNiveis.UseVisualStyleBackColor = true;
             // 
             // checkVR
             // 
             this.checkVR.AutoSize = true;
-            this.checkVR.Location = new System.Drawing.Point(890, 105);
-            this.checkVR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkVR.Location = new System.Drawing.Point(664, 104);
+            this.checkVR.Margin = new System.Windows.Forms.Padding(2);
             this.checkVR.Name = "checkVR";
-            this.checkVR.Size = new System.Drawing.Size(49, 21);
+            this.checkVR.Size = new System.Drawing.Size(41, 17);
             this.checkVR.TabIndex = 13;
             this.checkVR.Text = "VR";
             this.checkVR.UseVisualStyleBackColor = true;
@@ -198,149 +196,165 @@
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(393, 44);
+            this.lblID.Location = new System.Drawing.Point(251, 41);
+            this.lblID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(21, 17);
+            this.lblID.Size = new System.Drawing.Size(18, 13);
             this.lblID.TabIndex = 14;
             this.lblID.Text = "ID";
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(369, 69);
+            this.lblName.Location = new System.Drawing.Point(278, 69);
+            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(45, 17);
+            this.lblName.Size = new System.Drawing.Size(35, 13);
             this.lblName.TabIndex = 15;
             this.lblName.Text = "Name";
             // 
-            // button1
+            // buttonFilter
             // 
-            this.button1.Location = new System.Drawing.Point(1140, 46);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 39);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Filter";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonFilter.Location = new System.Drawing.Point(855, 37);
+            this.buttonFilter.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonFilter.Name = "buttonFilter";
+            this.buttonFilter.Size = new System.Drawing.Size(65, 32);
+            this.buttonFilter.TabIndex = 16;
+            this.buttonFilter.Text = "Filter";
+            this.buttonFilter.UseVisualStyleBackColor = true;
+            this.buttonFilter.Click += new System.EventHandler(this.ButtonFilterClick);
             // 
-            // textBox1
+            // textBoxValue
             // 
-            this.textBox1.Location = new System.Drawing.Point(95, 63);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
-            this.textBox1.TabIndex = 17;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBoxValue.Location = new System.Drawing.Point(82, 50);
+            this.textBoxValue.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxValue.Name = "textBoxValue";
+            this.textBoxValue.Size = new System.Drawing.Size(92, 20);
+            this.textBoxValue.TabIndex = 17;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(603, 39);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dateTimePicker1.Location = new System.Drawing.Point(453, 45);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(102, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(78, 20);
             this.dateTimePicker1.TabIndex = 18;
             this.dateTimePicker1.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // labelData
             // 
             this.labelData.AutoSize = true;
-            this.labelData.Location = new System.Drawing.Point(559, 44);
+            this.labelData.Location = new System.Drawing.Point(377, 47);
+            this.labelData.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelData.Name = "labelData";
-            this.labelData.Size = new System.Drawing.Size(38, 17);
+            this.labelData.Size = new System.Drawing.Size(72, 13);
             this.labelData.TabIndex = 19;
-            this.labelData.Text = "Data";
+            this.labelData.Text = "Release Date";
             // 
             // txtIdade
             // 
-            this.txtIdade.Location = new System.Drawing.Point(603, 66);
+            this.txtIdade.Location = new System.Drawing.Point(453, 67);
+            this.txtIdade.Margin = new System.Windows.Forms.Padding(2);
             this.txtIdade.Name = "txtIdade";
-            this.txtIdade.Size = new System.Drawing.Size(102, 22);
+            this.txtIdade.Size = new System.Drawing.Size(78, 20);
             this.txtIdade.TabIndex = 20;
             // 
             // labelIdade
             // 
             this.labelIdade.AutoSize = true;
-            this.labelIdade.Location = new System.Drawing.Point(564, 69);
+            this.labelIdade.Location = new System.Drawing.Point(424, 69);
+            this.labelIdade.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelIdade.Name = "labelIdade";
-            this.labelIdade.Size = new System.Drawing.Size(33, 17);
+            this.labelIdade.Size = new System.Drawing.Size(26, 13);
             this.labelIdade.TabIndex = 21;
             this.labelIdade.Text = "Age";
             // 
             // txtMetacritic
             // 
-            this.txtMetacritic.Location = new System.Drawing.Point(831, 38);
+            this.txtMetacritic.Location = new System.Drawing.Point(624, 44);
+            this.txtMetacritic.Margin = new System.Windows.Forms.Padding(2);
             this.txtMetacritic.Name = "txtMetacritic";
-            this.txtMetacritic.Size = new System.Drawing.Size(100, 22);
+            this.txtMetacritic.Size = new System.Drawing.Size(76, 20);
             this.txtMetacritic.TabIndex = 22;
             // 
             // labelMeta
             // 
             this.labelMeta.AutoSize = true;
-            this.labelMeta.Location = new System.Drawing.Point(757, 44);
+            this.labelMeta.Location = new System.Drawing.Point(535, 50);
+            this.labelMeta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMeta.Name = "labelMeta";
-            this.labelMeta.Size = new System.Drawing.Size(68, 17);
+            this.labelMeta.Size = new System.Drawing.Size(87, 13);
             this.labelMeta.TabIndex = 23;
-            this.labelMeta.Text = "Metacritic";
+            this.labelMeta.Text = "Metacritic Rating";
             // 
             // txtRecomend
             // 
-            this.txtRecomend.Location = new System.Drawing.Point(831, 66);
+            this.txtRecomend.Location = new System.Drawing.Point(624, 67);
+            this.txtRecomend.Margin = new System.Windows.Forms.Padding(2);
             this.txtRecomend.Name = "txtRecomend";
-            this.txtRecomend.Size = new System.Drawing.Size(100, 22);
+            this.txtRecomend.Size = new System.Drawing.Size(76, 20);
             this.txtRecomend.TabIndex = 24;
             // 
             // labelRecomend
             // 
             this.labelRecomend.AutoSize = true;
-            this.labelRecomend.Location = new System.Drawing.Point(711, 69);
+            this.labelRecomend.Location = new System.Drawing.Point(534, 69);
+            this.labelRecomend.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelRecomend.Name = "labelRecomend";
-            this.labelRecomend.Size = new System.Drawing.Size(114, 17);
+            this.labelRecomend.Size = new System.Drawing.Size(87, 13);
             this.labelRecomend.TabIndex = 25;
             this.labelRecomend.Text = "Recomendations";
             // 
             // labelFilters
             // 
             this.labelFilters.AutoSize = true;
-            this.labelFilters.Location = new System.Drawing.Point(622, 9);
+            this.labelFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilters.Location = new System.Drawing.Point(514, 10);
+            this.labelFilters.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFilters.Name = "labelFilters";
-            this.labelFilters.Size = new System.Drawing.Size(46, 17);
+            this.labelFilters.Size = new System.Drawing.Size(136, 15);
             this.labelFilters.TabIndex = 26;
-            this.labelFilters.Text = "Filters";
+            this.labelFilters.Text = "Search in the DataBase";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(92, 9);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(24, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 17);
+            this.label1.Size = new System.Drawing.Size(184, 15);
             this.label1.TabIndex = 27;
-            this.label1.Text = "Search";
+            this.label1.Text = "Show information about a Game";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelValue
             // 
             this.labelValue.AutoSize = true;
-            this.labelValue.Location = new System.Drawing.Point(27, 66);
+            this.labelValue.Location = new System.Drawing.Point(44, 53);
+            this.labelValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelValue.Name = "labelValue";
-            this.labelValue.Size = new System.Drawing.Size(44, 17);
+            this.labelValue.Size = new System.Drawing.Size(34, 13);
             this.labelValue.TabIndex = 28;
             this.labelValue.Text = "Value";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 113);
+            this.label2.Location = new System.Drawing.Point(47, 77);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 17);
+            this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 29;
             this.label2.Text = "Type";
             // 
             // labelOrderBy
             // 
             this.labelOrderBy.AutoSize = true;
-            this.labelOrderBy.Location = new System.Drawing.Point(995, 39);
+            this.labelOrderBy.Location = new System.Drawing.Point(747, 45);
+            this.labelOrderBy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelOrderBy.Name = "labelOrderBy";
-            this.labelOrderBy.Size = new System.Drawing.Size(65, 17);
+            this.labelOrderBy.Size = new System.Drawing.Size(48, 13);
             this.labelOrderBy.TabIndex = 30;
             this.labelOrderBy.Text = "Order By";
             // 
@@ -353,20 +367,41 @@
             "Release Date",
             "Number of DLC´s",
             "Metacritic",
-            "Recomendations",
+            "Recommendations",
             "People who have",
             "People who play",
             "Achievements"});
-            this.cboxOrderBy.Location = new System.Drawing.Point(963, 63);
+            this.cboxOrderBy.Location = new System.Drawing.Point(723, 64);
+            this.cboxOrderBy.Margin = new System.Windows.Forms.Padding(2);
             this.cboxOrderBy.Name = "cboxOrderBy";
-            this.cboxOrderBy.Size = new System.Drawing.Size(131, 24);
+            this.cboxOrderBy.Size = new System.Drawing.Size(99, 21);
             this.cboxOrderBy.TabIndex = 31;
+            // 
+            // label3
+            // 
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Location = new System.Drawing.Point(232, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(2, 135);
+            this.label3.TabIndex = 32;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(82, 114);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(81, 23);
+            this.buttonSearch.TabIndex = 33;
+            this.buttonSearch.Text = "Show Details";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.ButtonSearchClick);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1273, 704);
+            this.ClientSize = new System.Drawing.Size(950, 629);
+            this.Controls.Add(this.buttonSearch);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.cboxOrderBy);
             this.Controls.Add(this.labelOrderBy);
             this.Controls.Add(this.label2);
@@ -381,8 +416,8 @@
             this.Controls.Add(this.txtIdade);
             this.Controls.Add(this.labelData);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBoxValue);
+            this.Controls.Add(this.buttonFilter);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.checkVR);
@@ -395,13 +430,12 @@
             this.Controls.Add(this.checkWindows);
             this.Controls.Add(this.checkSuppContrl);
             this.Controls.Add(this.txtID);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxType);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "Steam DB";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -411,7 +445,7 @@
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.CheckBox checkSuppContrl;
         private System.Windows.Forms.CheckBox checkWindows;
@@ -424,8 +458,8 @@
         private System.Windows.Forms.CheckBox checkVR;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button buttonFilter;
+        private System.Windows.Forms.TextBox textBoxValue;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label labelData;
         private System.Windows.Forms.TextBox txtIdade;
@@ -440,6 +474,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelOrderBy;
         private System.Windows.Forms.ComboBox cboxOrderBy;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonSearch;
     }
 }
 
