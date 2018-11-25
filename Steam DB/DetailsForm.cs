@@ -26,6 +26,24 @@ namespace Steam_DB {
             lblName.Text = game.Name;
             lblRDate.Text = Convert.ToString(game.ReleaseDate.Date);
             lblAge.Text = Convert.ToString(game.RequiredAge);
+            lblDLC.Text = Convert.ToString(game.DLCCount);
+            lblMeta.Text = Convert.ToString(game.Metacritic);
+            lblMovieCount.Text = Convert.ToString(game.MovieCount);
+            lblRecomm.Text = Convert.ToString(game.RecommendationCount);
+            lblScreenShotCount.Text = Convert.ToString(game.ScreenshotCount);
+            lblOwners.Text = Convert.ToString(game.Owners);
+            lblNumbOfPlayers.Text = Convert.ToString(game.NumberOfPlayers);
+            lblAchievements.Text = Convert.ToString(game.AchievementCount);
+            lblContrSuport.Text = Convert.ToString(game.ControllerSupport);
+            lblPlatWindows.Text = Convert.ToString(game.PlatformWindows);
+            lblPlatLinux.Text = Convert.ToString(game.PlatformLinux);
+            lblPlatMac.Text = Convert.ToString(game.PlatformMac);
+            lblSinglePlayer.Text = Convert.ToString(game.CategorySinglePlayer);
+            lblMulti.Text = Convert.ToString(game.CategoryMultiplayer);
+            lblCoop.Text = Convert.ToString(game.CategoryCoop);
+            lblIncludeEditor.Text = Convert.ToString(game.CategoryIncludeLevelEditor);
+            lblVR.Text = Convert.ToString(game.CategoryVRSupport);
+            //lblAboutText.Text = Convert.ToString(game.AboutText);
 
             if (!game.SupportURL.IsAbsoluteUri) {
                 buttonSURL.Enabled = false;
