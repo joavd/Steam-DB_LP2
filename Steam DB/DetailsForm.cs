@@ -27,6 +27,11 @@ namespace Steam_DB {
             this.Text = "Details about " + game.Name;
             pictureBox1.ImageLocation = game.HeaderImage.ToString();
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+
+            lblID.Text = Convert.ToString(game.ID);
+            lblName.Text = game.Name;
+            lblRDate.Text = Convert.ToString(game.ReleaseDate.Date);
+            lblAge.Text = Convert.ToString(game.RequiredAge);
         }
     }
 }
