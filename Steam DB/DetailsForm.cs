@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Steam_DB {
     /// <summary>
@@ -26,7 +20,26 @@ namespace Steam_DB {
         private void DetailsFormLoad(object sender, EventArgs e) {
             this.Text = "Details about " + game.Name;
             pictureBox1.ImageLocation = game.HeaderImage.ToString();
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            if (!game.SupportURL.IsAbsoluteUri) {
+                buttonSURL.Enabled = false;
+            }
+            if (!game.Website.IsAbsoluteUri) {
+                buttonWebsite.Enabled = false;
+            }
+
+        }
+
+        private void ButtonSURLClick(object sender, EventArgs e) {
+            OpenWebsite(game.SupportURL.ToString());
+        }
+
+        private void ButtonWebsiteClick(object sender, EventArgs e) {
+            OpenWebsite(game.Website.ToString());
+        }
+
+        private void OpenWebsite(string url) {
+            ProcessStartInfo sInfo = new ProcessStartInfo(url);
+            Process.Start(sInfo);
         }
     }
 }
