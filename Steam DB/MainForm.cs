@@ -133,7 +133,7 @@ namespace Steam_DB {
             }
 
             Form detailsForm = new DetailsForm(gameFound);
-            detailsForm.Show();
+            detailsForm.ShowDialog();
         }
     }
 }

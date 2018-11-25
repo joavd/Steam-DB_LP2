@@ -36,6 +36,8 @@
             this.lblDLC = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblMeta = new System.Windows.Forms.Label();
+            this.buttonSURL = new System.Windows.Forms.Button();
+            this.buttonWebsite = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,6 +46,8 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(50, 251);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 241);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 17);
             this.label1.TabIndex = 0;
@@ -150,6 +154,31 @@
             this.lblMeta.Name = "lblMeta";
             this.lblMeta.Size = new System.Drawing.Size(0, 17);
             this.lblMeta.TabIndex = 12;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(460, 215);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // buttonSURL
+            // 
+            this.buttonSURL.Location = new System.Drawing.Point(367, 386);
+            this.buttonSURL.Name = "buttonSURL";
+            this.buttonSURL.Size = new System.Drawing.Size(105, 23);
+            this.buttonSURL.TabIndex = 2;
+            this.buttonSURL.Text = "Open SupportURL";
+            this.buttonSURL.UseVisualStyleBackColor = true;
+            this.buttonSURL.Click += new System.EventHandler(this.ButtonSURLClick);
+            // 
+            // buttonWebsite
+            // 
+            this.buttonWebsite.Location = new System.Drawing.Point(367, 415);
+            this.buttonWebsite.Name = "buttonWebsite";
+            this.buttonWebsite.Size = new System.Drawing.Size(105, 23);
+            this.buttonWebsite.TabIndex = 3;
+            this.buttonWebsite.Text = "Open Website";
+            this.buttonWebsite.UseVisualStyleBackColor = true;
+            this.buttonWebsite.Click += new System.EventHandler(this.ButtonWebsiteClick);
             // 
             // DetailsForm
             // 
@@ -167,6 +196,9 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblID);
+            this.ClientSize = new System.Drawing.Size(484, 450);
+            this.Controls.Add(this.buttonWebsite);
+            this.Controls.Add(this.buttonSURL);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -194,5 +226,7 @@
         private System.Windows.Forms.Label lblDLC;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblMeta;
+        private System.Windows.Forms.Button buttonSURL;
+        private System.Windows.Forms.Button buttonWebsite;
     }
 }
