@@ -7,6 +7,9 @@ namespace Steam_DB {
     /// Class that shows details about the selected Game
     /// </summary>
     public partial class DetailsForm : Form {
+        /// <summary>
+        /// Instance of Game.
+        /// </summary>
         private Game game;
 
         /// <summary>
@@ -17,11 +20,21 @@ namespace Steam_DB {
             this.game = game;
         }
 
+        /// <summary>
+        /// Show the selected game in Mainform, show the foto and the data 
+        /// of that game.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DetailsFormLoad(object sender, EventArgs e) {
+            // Set the game name header. 
             this.Text = game.Name;
+            // Insert the foto to the picturebox.
             pictureBox1.ImageLocation = game.HeaderImage.ToString();
+            // format the foto.
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
 
+            // Insert the data in the elements of the window.
             lblID.Text = Convert.ToString(game.ID);
             lblRDate.Text = game.ReleaseDate.ToShortDateString();
             lblAge.Text = Convert.ToString(game.RequiredAge);
@@ -44,10 +57,12 @@ namespace Steam_DB {
             cbVR.Checked = game.CategoryVRSupport;
             richTextBox1.Text = game.AboutText;
 
+            // Enable button if the game have SupportURL
             if (game.SupportURL.IsAbsoluteUri || 
                 game.SupportURL.ToString().Contains("www.")) {
                 buttonSURL.Enabled = true;
             }
+            // Enable button if the game have Website
             if (game.Website.IsAbsoluteUri ||
                 game.Website.ToString().Contains("www.")) {
                 buttonWebsite.Enabled = true;
@@ -55,14 +70,28 @@ namespace Steam_DB {
 
         }
 
+        /// <summary>
+        /// ButtonSURLClick: Open the SupportURL of the game selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonSURLClick(object sender, EventArgs e) {
             OpenWebsite(game.SupportURL.ToString());
         }
 
+        /// <summary>
+        /// ButtonWebsiteClick: Open the Website of the game selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonWebsiteClick(object sender, EventArgs e) {
             OpenWebsite(game.Website.ToString());
         }
 
+        /// <summary>
+        /// OpenWebsite: Do the action to Open the navigator.
+        /// </summary>
+        /// <param name="url"></param>
         private void OpenWebsite(string url) {
             ProcessStartInfo sInfo = new ProcessStartInfo(url);
             try {
