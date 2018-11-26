@@ -65,7 +65,7 @@ criteria or see more detailed info about a specific game we wish.
 ### Fluxogram
 
 <p align="center">
-  <img src="link" alt="Fluxogram"/>
+  <img src="Fluxograma.jpg" alt="Fluxogram"/>
 </p>
 
 ## Conclusions
@@ -73,7 +73,7 @@ criteria or see more detailed info about a specific game we wish.
 With this project we consolidated the medium/advanced C# concepts that were
 taught in class by using them in a "real" program. We also learned to use
 Windows Forms in order to make an application that could be used more directly
-and with a better design than the console.
+and with a better design than the console/command line.
 
 ## References
 
