@@ -61,7 +61,7 @@ namespace Steam_DB {
                     website = (Uri.TryCreate(fields[numWeb], 0, out Uri web)) ?
                         web : null;
 
-                    /// Add file data to the HasSet, with the correct values.
+                    /// Add file data to the Game HasSet, with the correct values.
                     database.Add(new Game(
                       Convert.ToInt32(fields[0]),
                       fields[1],
