@@ -10,7 +10,7 @@ namespace Steam_DB {
     /// </summary>
     public partial class MainForm : Form {
         /// <summary>
-        /// Declare database var of Icollection<Game>
+        /// Declare database var of ICollection(Game)
         /// </summary>
         private ICollection<Game> database;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Steam_DB {
         /// </summary>
         private string filePath;
         /// <summary>
-        /// Declare a Func which recive a Object and return a Game.
+        /// Declare a Func which receives an Object and return a Game.
         /// </summary>
         Func<Game, Object> OrderByFunc = game => game.ID;
 
@@ -38,8 +38,10 @@ namespace Steam_DB {
         /// <summary>
         /// Shows the file in a table
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Reference to the object that raised the 
+        /// event</param>
+        /// <param name="e">Passes an object specific to the event that is
+        /// being handled</param>
         private void MainFormLoad(object sender, EventArgs e) {
             // initialize variable with a new HasSet of games.
             database = new HashSet<Game>();
@@ -54,7 +56,7 @@ namespace Steam_DB {
             // Method: read the file and create a HasSet of Games.
             csvParser.ReadCSVFile(database, filePath);
 
-            // var source contains the hasset data in order.
+            // var source contains the hashset data in order.
             var source = new BindingSource {
                 DataSource = database.OrderBy(OrderByFunc)
             };
@@ -133,6 +135,7 @@ namespace Steam_DB {
                 dataGrid.DataSource = db2.OrderByDescending(OrderByFunc).ToList();
             }
         }
+
         /// <summary>
         /// Method Transformcombobox: Transforms the strings of the comboBox
         /// orderBy in the right Game Properties and save values in the Func
@@ -165,8 +168,10 @@ namespace Steam_DB {
         /// Open detail form window and give the data of the selected game 
         /// to show in that window.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Reference to the object that raised the 
+        /// event</param>
+        /// <param name="e">Passes an object specific to the event that is
+        /// being handled</param>
         private void ButtonSearchClick(object sender, EventArgs e) {
             // instance of Game.
             Game gameFound = new Game();
@@ -180,7 +185,8 @@ namespace Steam_DB {
                     gameFound = database.First(game => game.Name ==
                         textBoxValue.Text);
                 }
-            } catch {
+            }
+            catch {
                 MessageBox.Show("The game you tried to search for doesn't" +
                     " exist.", "Error!");
                 return;
@@ -206,7 +212,7 @@ namespace Steam_DB {
                 } else if (ctrl is CheckBox) {
                     ((CheckBox)ctrl).Checked = false;
                 } else if (ctrl is DateTimePicker) {
-                    ((DateTimePicker)ctrl).Value = new DateTime(1900,01,01);
+                    ((DateTimePicker)ctrl).Value = new DateTime(1900, 01, 01);
                 }
             }
         }
