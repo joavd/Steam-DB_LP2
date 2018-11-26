@@ -56,6 +56,7 @@
             this.ClientSize = new System.Drawing.Size(464, 333);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.readFileButton);
+            this.MaximizeBox = false;
             this.Name = "AskFileForm";
             this.Text = "File Loader";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

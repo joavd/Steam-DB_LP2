@@ -18,13 +18,12 @@ namespace Steam_DB {
         }
 
         private void DetailsFormLoad(object sender, EventArgs e) {
-            this.Text = "Details about " + game.Name;
+            this.Text = game.Name;
             pictureBox1.ImageLocation = game.HeaderImage.ToString();
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
 
             lblID.Text = Convert.ToString(game.ID);
-            lblName.Text = game.Name;
-            lblRDate.Text = Convert.ToString(game.ReleaseDate.Date);
+            lblRDate.Text = game.ReleaseDate.ToShortDateString();
             lblAge.Text = Convert.ToString(game.RequiredAge);
             lblDLC.Text = Convert.ToString(game.DLCCount);
             lblMeta.Text = Convert.ToString(game.Metacritic);
@@ -34,22 +33,24 @@ namespace Steam_DB {
             lblOwners.Text = Convert.ToString(game.Owners);
             lblNumbOfPlayers.Text = Convert.ToString(game.NumberOfPlayers);
             lblAchievements.Text = Convert.ToString(game.AchievementCount);
-            lblContrSuport.Text = Convert.ToString(game.ControllerSupport);
-            lblPlatWindows.Text = Convert.ToString(game.PlatformWindows);
-            lblPlatLinux.Text = Convert.ToString(game.PlatformLinux);
-            lblPlatMac.Text = Convert.ToString(game.PlatformMac);
-            lblSinglePlayer.Text = Convert.ToString(game.CategorySinglePlayer);
-            lblMulti.Text = Convert.ToString(game.CategoryMultiplayer);
-            lblCoop.Text = Convert.ToString(game.CategoryCoop);
-            lblIncludeEditor.Text = Convert.ToString(game.CategoryIncludeLevelEditor);
-            lblVR.Text = Convert.ToString(game.CategoryVRSupport);
-            //lblAboutText.Text = Convert.ToString(game.AboutText);
+            cbController.Checked = game.ControllerSupport;
+            cbWindows.Checked = game.PlatformWindows;
+            cbLinux.Checked = game.PlatformLinux;
+            cbMac.Checked = game.PlatformMac;
+            cbSP.Checked = game.CategorySinglePlayer;
+            cbMP.Checked = game.CategoryMultiplayer;
+            cbCoop.Checked = game.CategoryCoop;
+            cbLevel.Checked = game.CategoryIncludeLevelEditor;
+            cbVR.Checked = game.CategoryVRSupport;
+            richTextBox1.Text = game.AboutText;
 
-            if (!game.SupportURL.IsAbsoluteUri) {
-                buttonSURL.Enabled = false;
+            if (game.SupportURL.IsAbsoluteUri || 
+                game.SupportURL.ToString().Contains("www.")) {
+                buttonSURL.Enabled = true;
             }
-            if (!game.Website.IsAbsoluteUri) {
-                buttonWebsite.Enabled = false;
+            if (game.Website.IsAbsoluteUri ||
+                game.Website.ToString().Contains("www.")) {
+                buttonWebsite.Enabled = true;
             }
 
         }
@@ -64,7 +65,12 @@ namespace Steam_DB {
 
         private void OpenWebsite(string url) {
             ProcessStartInfo sInfo = new ProcessStartInfo(url);
-            Process.Start(sInfo);
+            try {
+                Process.Start(sInfo);
+            } catch {
+                MessageBox.Show("There was an error displaying the webpage" +
+                    ".", "Error!");
+            }
         }
     }
 }

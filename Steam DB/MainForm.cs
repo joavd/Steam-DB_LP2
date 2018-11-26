@@ -12,7 +12,7 @@ namespace Steam_DB {
         private ICollection<Game> database;
         private CSVParser csvParser;
         private string filePath;
-        Func<Game, Object> OrderByFunc = null;
+        Func<Game, Object> OrderByFunc = game => game.ID;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -26,17 +26,18 @@ namespace Steam_DB {
         private void MainFormLoad(object sender, EventArgs e) {
             database = new HashSet<Game>();
             csvParser = new CSVParser();
-            comboBoxType.SelectedIndex = 0;
+            cboxType.SelectedIndex = 0;
             cboxOrderBy.SelectedIndex = 0;
+            cboxOrder.SelectedIndex = 0;
 
             csvParser.ReadCSVFile(database, filePath);
 
             var source = new BindingSource {
-                DataSource = database
+                DataSource = database.OrderBy(OrderByFunc)
             };
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.DataSource = source;
+            dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGrid.AllowUserToAddRows = false;
+            dataGrid.DataSource = source;
         }
 
         private void ButtonFilterClick(object sender, EventArgs e) {
@@ -89,9 +90,13 @@ namespace Steam_DB {
                     && ((checkVR.Checked == false) ||
                         game.CategoryVRSupport == checkVR.Checked)
 
-                 select game).OrderBy(OrderByFunc).ToList();
+                 select game);
 
-            dataGridView1.DataSource = db2;
+            if (cboxOrder.SelectedIndex == 0) {
+                dataGrid.DataSource = db2.OrderBy(OrderByFunc).ToList();
+            } else {
+                dataGrid.DataSource = db2.OrderByDescending(OrderByFunc).ToList();
+            }
         }
 
         private void TransformCombobox() {
@@ -119,10 +124,10 @@ namespace Steam_DB {
         private void ButtonSearchClick(object sender, EventArgs e) {
             Game gameFound = new Game();
             try {
-                if (comboBoxType.Text == "ID") {
+                if (cboxType.Text == "ID") {
                     gameFound = database.First(game => game.ID ==
                         Convert.ToInt32(textBoxValue.Text));
-                } else if (comboBoxType.Text == "Name") {
+                } else if (cboxType.Text == "Name") {
                     gameFound = database.First(game => game.Name ==
                         textBoxValue.Text);
                 }
@@ -134,6 +139,20 @@ namespace Steam_DB {
 
             Form detailsForm = new DetailsForm(gameFound);
             detailsForm.ShowDialog();
+        }
+
+        private void ButtonClearClick(object sender, EventArgs e) {
+            foreach (Control ctrl in this.Controls) {
+                if (ctrl is TextBox) {
+                    ((TextBox)ctrl).Text = String.Empty;
+                } else if (ctrl is ComboBox) {
+                    ((ComboBox)ctrl).SelectedIndex = 0;
+                } else if (ctrl is CheckBox) {
+                    ((CheckBox)ctrl).Checked = false;
+                } else if (ctrl is DateTimePicker) {
+                    ((DateTimePicker)ctrl).Value = new DateTime(1900,01,01);
+                }
+            }
         }
     }
 }
