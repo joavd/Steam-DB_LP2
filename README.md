@@ -1,4 +1,7 @@
-# Simplexity
+# Steam Database from CSV file
+
+Project made for LP2 class using Windows Forms (*C#*). It reads a .csv file that
+contains data from games available on Steam (`games.csv`).
 
 ## Who did this project?
 
@@ -15,26 +18,49 @@ We worked in a private repository that will be available publicly in this
 
 ## Task distribution
 
-Everyone contributed and helped with the project, both in person and online,
-but below, there's a summary of each individual's contributions:
+Both persons contributed to the project equally, sharing tasks and doing pair
+programming, but below, there's a summary of eachs contributions:
 
 * __Alejandro Urcera__
-  * 1ª;
-  * 2ª;
+  * Code;
+  * Program Tests;
+  * Diagram and Fluxogram;
+  * Report;
+  * Commentary and Documentation;
 
 * __João Duarte__
-  * 1ª;
-  * 2ª;
+  * Code;
+  * Program Tests;
+  * Report;
+  * Commentary and Documentation;
+  * Sandcastle Documentation;
 
 ## Our solution
 
 ### Architecture
 
-Explicação de como funciona xD
+The program was made with Windows Forms for a more appealing way to show data
+and interact with it. It was made using the most recent topics taught in LP2,
+such as Patterns, I/O, Lambda Expressions and *LINQ*, as well as all the
+previous things we learned so far.
+
+At launch, the program shows a dialog that asks for the file we want to read,
+validating it and passing it to the main form.
+
+On loading the main form, it parses all the data from the file, by reading every
+line and creating a `Game` object, which gets saved to an `ICollection<Game>`,
+more specifically an `HashSet<Game>` that serves as our "database", and is
+displayed fully to the user. We chose an `HashSet<>` together with with
+`structs` to prevent duplicate games getting into the *database*;
+
+Then we can filter the *database* using *LINQ*, getting games that match our
+criteria or see more detailed info about a specific game we wish.
 
 ### UML Diagram
 
-![UML Diagram](link)
+<p align="center">
+  <img src="UML.jpg" alt="UML Diagram"/>
+</p>
 
 ### Fluxogram
 
@@ -44,11 +70,14 @@ Explicação de como funciona xD
 
 ## Conclusions
 
-Conclusion
+With this project we consolidated the medium/advanced C# concepts that were
+taught in class by using them in a "real" program. We also learned to use
+Windows Forms in order to make an application that could be used more directly
+and with a better design than the console.
 
 ## References
 
-* Whitaker, R. B. (2016). **The C# Player's Guide** 
+* Whitaker, R. B. (2016). **The C# Player's Guide**
     (3rd Edition). Starbound Software.
 * Albahari, J. (2017). **C# 7.0 in a Nutshell**.
     O’Reilly Media.
