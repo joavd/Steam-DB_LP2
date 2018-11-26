@@ -21,7 +21,7 @@ namespace Steam_DB {
         }
 
         /// <summary>
-        /// Show the selected game in Mainform, show the foto and the data 
+        /// Show the selected game in Detailsform, show the foto and the data 
         /// of that game.
         /// </summary>
         /// <param name="sender"></param>
@@ -71,7 +71,7 @@ namespace Steam_DB {
         }
 
         /// <summary>
-        /// ButtonSURLClick: Open the SupportURL of the game selected.
+        /// ButtonsURLClick: Open the SupportURL of the game selected.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

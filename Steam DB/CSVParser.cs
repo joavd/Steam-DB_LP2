@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Windows.Forms;
 
 namespace Steam_DB {
     /// <summary>
-    /// Class CSVPArser read from the file and save the values in a HasSet.
+    /// Class CSVParser reads from the file and save the values in a HasSet.
     /// </summary>
     public class CSVParser {
         /// <summary>

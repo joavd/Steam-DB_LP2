@@ -5,10 +5,10 @@ contains data from games available on Steam (`games.csv`).
 
 ## Who did this project?
 
-* __Alejandro Urcera__
+* [__Alejandro Urcera__](https://github.com/aurceramartins)
   * a21703818
 
-* __João Duarte__
+* [__João Duarte__](https://github.com/JoaoAlexandreDuarte)
   * a21702097
 
 ## Git repository
@@ -65,7 +65,7 @@ criteria or see more detailed info about a specific game we wish.
 ### Fluxogram
 
 <p align="center">
-  <img src="Fluxograma.jpg" alt="Fluxogram"/>
+  <img src="Fluxogram.jpg" alt="Fluxogram"/>
 </p>
 
 ## Conclusions

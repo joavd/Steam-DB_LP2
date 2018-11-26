@@ -18,6 +18,10 @@ namespace Steam_DB {
         /// </summary>
         private CSVParser csvParser;
         /// <summary>
+        /// Declare SearchFilter var of type SearchFilter
+        /// </summary>
+        private SearchFilter sF;
+        /// <summary>
         /// filePath string.
         /// </summary>
         private string filePath;
@@ -47,6 +51,7 @@ namespace Steam_DB {
             database = new HashSet<Game>();
             // initialize csvParse var.
             csvParser = new CSVParser();
+            sF = new SearchFilter();
             // initialize the combo box to 0
             cboxType.SelectedIndex = 0;
             // initialize the combo box to 0
@@ -74,59 +79,18 @@ namespace Steam_DB {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonFilterClick(object sender, EventArgs e) {
-            // Method that conver to the right values the strings in the
+            // Method that converts to the right values the strings in the
             // combo box OrderBy. 
             TransformCombobox();
 
             // Linq: searches for values in the table, filters and orders.
-            IEnumerable<Game> db2 =
-                (from game in database
-                 where (string.IsNullOrEmpty(txtID.Text) ||
-                        game.ID.ToString().Contains(txtID.Text))
-
-                    && (string.IsNullOrEmpty(txtName.Text) ||
-                        game.Name.ToLower().Contains(txtName.Text.ToLower()))
-
-                    && (string.IsNullOrEmpty(dateTimePicker1.Text) ||
-                        game.ReleaseDate >= dateTimePicker1.Value.Date)
-
-                    && (string.IsNullOrEmpty(txtIdade.Text) ||
-                        game.RequiredAge >= Convert.ToInt32(txtIdade.Text))
-
-                    && (string.IsNullOrEmpty(txtMetacritic.Text) ||
-                        game.Metacritic >= Convert.ToInt32(txtMetacritic.Text))
-
-                    && (string.IsNullOrEmpty(txtRecomend.Text) ||
-                        game.RecommendationCount >= Convert.ToInt32(txtRecomend.Text))
-
-                    && ((checkSuppContrl.Checked == false) ||
-                        game.ControllerSupport == checkSuppContrl.Checked)
-
-                    && ((checkWindows.Checked == false) ||
-                        game.PlatformWindows == checkWindows.Checked)
-
-                    && ((checkLinux.Checked == false) ||
-                        game.PlatformLinux == checkLinux.Checked)
-
-                    && ((checkMac.Checked == false) ||
-                        game.PlatformMac == checkMac.Checked)
-
-                    && ((checkSinglePlayer.Checked == false) ||
-                        game.CategorySinglePlayer == checkSinglePlayer.Checked)
-
-                    && ((checkMulti.Checked == false) ||
-                        game.CategoryMultiplayer == checkMulti.Checked)
-
-                    && ((checkMultiCoop.Checked == false) ||
-                        game.CategoryCoop == checkMultiCoop.Checked)
-
-                    && ((checkEditNiveis.Checked == false) ||
-                        game.CategoryIncludeLevelEditor == checkEditNiveis.Checked)
-
-                    && ((checkVR.Checked == false) ||
-                        game.CategoryVRSupport == checkVR.Checked)
-
-                 select game);
+            IEnumerable<Game> db2 = sF.Filter(database, txtID.Text,
+                txtName.Text, dateTimePicker1.Value, txtIdade.Text,
+                txtMetacritic.Text, txtRecomend.Text, checkSuppContrl.Checked,
+                checkWindows.Checked, checkLinux.Checked, checkMac.Checked,
+                checkSinglePlayer.Checked, checkMulti.Checked,
+                checkMultiCoop.Checked, checkEditNiveis.Checked,
+                checkVR.Checked);
 
             // Order by the value in OrderByFunc that have combobox Orderby values.
             if (cboxOrder.SelectedIndex == 0) {
