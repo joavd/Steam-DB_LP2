@@ -65,7 +65,7 @@ criteria or see more detailed info about a specific game we wish.
 ### Fluxogram
 
 <p align="center">
-  <img src="Fluxograma.jpg" alt="Fluxogram"/>
+  <img src="Fluxogram.jpg" alt="Fluxogram"/>
 </p>
 
 ## Conclusions
