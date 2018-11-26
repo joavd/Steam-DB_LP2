@@ -5,10 +5,10 @@ contains data from games available on Steam (`games.csv`).
 
 ## Who did this project?
 
-* __Alejandro Urcera__
+* [__Alejandro Urcera__](https://github.com/aurceramartins)
   * a21703818
 
-* __João Duarte__
+* [__João Duarte__](https://github.com/JoaoAlexandreDuarte)
   * a21702097
 
 ## Git repository
