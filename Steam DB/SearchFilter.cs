@@ -10,10 +10,31 @@ namespace Steam_DB {
     /// Class that searches in an ICollection(Game)
     /// </summary>
     public class SearchFilter {
+        /// <summary>
+        /// Filters a given database and creates a new one with the specified
+        /// conditions
+        /// </summary>
+        /// <param name="database">Database to filter from</param>
+        /// <param name="id">ID to filter</param>
+        /// <param name="name">Name to filter</param>
+        /// <param name="date">Date to filter</param>
+        /// <param name="age">Age required to filter</param>
+        /// <param name="metacritic">Score minimum to filter</param>
+        /// <param name="recomend">Number of recomendations to filter</param>
+        /// <param name="control">If allows controller</param>
+        /// <param name="windows">If runs on Windows</param>
+        /// <param name="linux">If runs on Mac</param>
+        /// <param name="mac">If runs on Linux</param>
+        /// <param name="sp">If it's for single player</param>
+        /// <param name="mp">If it's for multiplayer</param>
+        /// <param name="coop">If it's for coop</param>
+        /// <param name="levels">If we can edit levels</param>
+        /// <param name="vr">If allows VR</param>
+        /// <returns></returns>
         public IEnumerable<Game> Filter(ICollection<Game> database,
                 string id, string name, DateTime date, string age,
                 string metacritic, string recomend, bool control, bool windows,
-                bool mac, bool linux, bool sp, bool mp, bool coop, bool levels,
+                bool linux, bool mac, bool sp, bool mp, bool coop, bool levels,
                 bool vr) {
 
             // Linq: searches for values in the table, filters and orders.
