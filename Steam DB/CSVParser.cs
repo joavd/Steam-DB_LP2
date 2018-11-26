@@ -12,56 +12,52 @@ namespace Steam_DB {
     /// </summary>
     public class CSVParser {
         /// <summary>
-        /// Var StreamReader file, it serves to use the file methods.
-        /// </summary>
-        private StreamReader file;
-        /// <summary>
-        /// Var string line, it serves to get the lines of the file.
-        /// </summary>
-        private string line;
-
-        /// <summary>
         /// Method ReadCSVFile read and save the file values in a HasSet.
         /// </summary>
-        /// <param name="database"></param>
-        /// <param name="filePath"></param>
+        /// <param name="database">The empty collection to save the values into
+        /// </param>
+        /// <param name="filePath">The path to read the file</param>
         public void ReadCSVFile(ICollection<Game> database, string filePath) {
+            // string line, it serves to get the lines of the file.
+            string line, headerLine;
 
-            /// Open the file.
-            file = File.OpenText(filePath);
+            // Open the file.
+            using (StreamReader file = File.OpenText(filePath)) {
+                // Reads the first line and ignores it
+                headerLine = file.ReadLine();
 
-            /// Perwalk the file while the lines of the file have data.
-            while ((line = file.ReadLine()) != null) {
-                /// Array fields, has capacity for 24 fields.
-                string[] fields = new string[24];
-                /// Get one by one the data of the fields in each line.
-                fields = line.Split(',');
-                /// We don´t want to get the header data of the file.
-                if (fields[0] == "ID") {
+                // Reads the file while the lines of the file have data.
+                while ((line = file.ReadLine()) != null) {
+                    // Array fields, has capacity for 24 fields.
+                    string[] fields = new string[24];
+                    // Get one by one the data of the fields in each line.
+                    fields = line.Split(',');
 
-                } else {
-                    /// Variables to know the fields of the URIs in the HasSet.
+                    // Variables to know the fields of the URIs in the HasSet.
                     int numSup = 21, numImg = 23, numWeb = 24;
-                    /// Inicialize Uri´s variables.
+                    // Inicialize Uri´s variables.
                     Uri supportURL, image, website;
-                    /// Array of int which have capacity for 8 fields.
+                    // Array of int which have capacity for 8 fields.
                     int[] intSupport = new int[8];
-                    /// Convert to int if it can.
+
+                    // Convert to int if it can.
                     for (int i = 0; i < 9; i++) {
                         Int32.TryParse(fields[i + 3], out int newInt);
                         fields[i + 3] = newInt.ToString();
                     }
-                    /// Parse the strings of the file to Uri, to save in the hasset.
+
+                    // Parse the strings of the file to Uri, to save in the 
+                    // collection.
                     DateTime.TryParse(fields[2], out DateTime time);
-                    supportURL = 
-                        (Uri.TryCreate(fields[numSup], 0, out Uri sup)) ? 
+                    supportURL =
+                        (Uri.TryCreate(fields[numSup], 0, out Uri sup)) ?
                         sup : null;
                     image = (Uri.TryCreate(fields[numImg], 0, out Uri img)) ?
                         img : null;
                     website = (Uri.TryCreate(fields[numWeb], 0, out Uri web)) ?
                         web : null;
 
-                    /// Add file data to the Game HasSet, with the correct values.
+                    // Add file data to the Game HasSet, with the correct values.
                     database.Add(new Game(
                       Convert.ToInt32(fields[0]),
                       fields[1],
@@ -88,7 +84,8 @@ namespace Steam_DB {
                       fields[22],
                       image,
                       website
-                      ));
+                      )
+                    );
                 }
             }
         }
