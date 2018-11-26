@@ -7,30 +7,51 @@ using System.IO;
 using System.Windows.Forms;
 
 namespace Steam_DB {
+    /// <summary>
+    /// Class CSVPArser read from the file and save the values in a HasSet.
+    /// </summary>
     public class CSVParser {
+        /// <summary>
+        /// Var StreamReader file, it serves to use the file methods.
+        /// </summary>
         private StreamReader file;
+        /// <summary>
+        /// Var string line, it serves to get the lines of the file.
+        /// </summary>
         private string line;
 
+        /// <summary>
+        /// Method ReadCSVFile read and save the file values in a HasSet.
+        /// </summary>
+        /// <param name="database"></param>
+        /// <param name="filePath"></param>
         public void ReadCSVFile(ICollection<Game> database, string filePath) {
 
+            /// Open the file.
             file = File.OpenText(filePath);
 
-
+            /// Perwalk the file while the lines of the file have data.
             while ((line = file.ReadLine()) != null) {
+                /// Array fields, has capacity for 24 fields.
                 string[] fields = new string[24];
+                /// Get one by one the data of the fields in each line.
                 fields = line.Split(',');
+                /// We don´t want to get the header data of the file.
                 if (fields[0] == "ID") {
 
                 } else {
+                    /// Variables to know the fields of the URIs in the HasSet.
                     int numSup = 21, numImg = 23, numWeb = 24;
+                    /// Inicialize Uri´s variables.
                     Uri supportURL, image, website;
+                    /// Array of int which have capacity for 8 fields.
                     int[] intSupport = new int[8];
 
                     for (int i = 0; i < 9; i++) {
                         Int32.TryParse(fields[i + 3], out int newInt);
                         fields[i + 3] = newInt.ToString();
                     }
-
+                    /// Parse the strings of the file to Uri to save in the hasset.
                     DateTime.TryParse(fields[2], out DateTime time);
                     supportURL = 
                         (Uri.TryCreate(fields[numSup], 0, out Uri sup)) ? 
@@ -40,6 +61,7 @@ namespace Steam_DB {
                     website = (Uri.TryCreate(fields[numWeb], 0, out Uri web)) ?
                         web : null;
 
+                    /// Add data file to the HasSet, with the correct values.
                     database.Add(new Game(
                       Convert.ToInt32(fields[0]),
                       fields[1],
