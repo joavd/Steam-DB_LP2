@@ -9,9 +9,21 @@ namespace Steam_DB {
     /// Class that shows the Data and manages searches and filters
     /// </summary>
     public partial class MainForm : Form {
+        /// <summary>
+        /// Declare database var of Icollection<Game>
+        /// </summary>
         private ICollection<Game> database;
+        /// <summary>
+        /// Declare csvParser var of type CSVParse.
+        /// </summary>
         private CSVParser csvParser;
+        /// <summary>
+        /// filePath string.
+        /// </summary>
         private string filePath;
+        /// <summary>
+        /// Declare a Func which recive a Object and return a Game.
+        /// </summary>
         Func<Game, Object> OrderByFunc = game => game.ID;
 
         /// <summary>
@@ -23,26 +35,48 @@ namespace Steam_DB {
             filePath = filepath;
         }
 
+        /// <summary>
+        /// Shows the file in a table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainFormLoad(object sender, EventArgs e) {
+            // initialize variable with a new HasSet of games.
             database = new HashSet<Game>();
+            // initialize csvParse var.
             csvParser = new CSVParser();
+            // initialize the combo box to 0
             cboxType.SelectedIndex = 0;
+            // initialize the combo box to 0
             cboxOrderBy.SelectedIndex = 0;
+            // initialize the combo box to 0
             cboxOrder.SelectedIndex = 0;
-
+            // Method: read the file and create a HasSet of Games.
             csvParser.ReadCSVFile(database, filePath);
 
+            // var source contains the hasset data in order.
             var source = new BindingSource {
                 DataSource = database.OrderBy(OrderByFunc)
             };
+            // Format the Grid.
             dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            // The user isnt allowed to insert new lines in the Grid.
             dataGrid.AllowUserToAddRows = false;
+            // Insert the source in the Grid.
             dataGrid.DataSource = source;
         }
 
+        /// <summary>
+        /// ButtonFilterClick: Filtering and order the data in the table.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonFilterClick(object sender, EventArgs e) {
+            // Method that conver to the right values the strings in the
+            // combo box OrderBy. 
             TransformCombobox();
 
+            // Linq: searches for values in the table, filters and orders.
             IEnumerable<Game> db2 =
                 (from game in database
                  where (string.IsNullOrEmpty(txtID.Text) ||
@@ -92,14 +126,20 @@ namespace Steam_DB {
 
                  select game);
 
+            // Order by the value in OrderByFunc that have combobox Orderby values.
             if (cboxOrder.SelectedIndex == 0) {
                 dataGrid.DataSource = db2.OrderBy(OrderByFunc).ToList();
             } else {
                 dataGrid.DataSource = db2.OrderByDescending(OrderByFunc).ToList();
             }
         }
-
+        /// <summary>
+        /// Method Transformcombobox: Transforms the strings of the comboBox
+        /// orderBy in the right Game Properties and save values in the Func
+        /// OrderByFunc.
+        /// </summary>
         private void TransformCombobox() {
+            // Get the text in cboxOrderBy and save the rights value in OrderByFunc.
             if (cboxOrderBy.Text == "ID") {
                 OrderByFunc = game => game.ID;
             } else if (cboxOrderBy.Text == "Name") {
@@ -121,9 +161,18 @@ namespace Steam_DB {
             }
         }
 
+        /// <summary>
+        /// Open detail form window and give the data of the selected game 
+        /// to show in that window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonSearchClick(object sender, EventArgs e) {
+            // instance of Game.
             Game gameFound = new Game();
             try {
+                // Transform the combobox (Type) string in correct value and pass
+                // to the database.
                 if (cboxType.Text == "ID") {
                     gameFound = database.First(game => game.ID ==
                         Convert.ToInt32(textBoxValue.Text));
@@ -136,13 +185,20 @@ namespace Steam_DB {
                     " exist.", "Error!");
                 return;
             }
-
+            // Instance of Details Form.
             Form detailsForm = new DetailsForm(gameFound);
+            // Show and open detailForm.
             detailsForm.ShowDialog();
         }
 
+        /// <summary>
+        /// Reset the default values of the input fields in the program.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonClearClick(object sender, EventArgs e) {
             foreach (Control ctrl in this.Controls) {
+                // Set to empty the input fields in the program.
                 if (ctrl is TextBox) {
                     ((TextBox)ctrl).Text = String.Empty;
                 } else if (ctrl is ComboBox) {
