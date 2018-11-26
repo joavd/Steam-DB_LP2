@@ -46,12 +46,12 @@ namespace Steam_DB {
                     Uri supportURL, image, website;
                     /// Array of int which have capacity for 8 fields.
                     int[] intSupport = new int[8];
-
+                    /// Convert to int if it can.
                     for (int i = 0; i < 9; i++) {
                         Int32.TryParse(fields[i + 3], out int newInt);
                         fields[i + 3] = newInt.ToString();
                     }
-                    /// Parse the strings of the file to Uri to save in the hasset.
+                    /// Parse the strings of the file to Uri, to save in the hasset.
                     DateTime.TryParse(fields[2], out DateTime time);
                     supportURL = 
                         (Uri.TryCreate(fields[numSup], 0, out Uri sup)) ? 
@@ -61,7 +61,7 @@ namespace Steam_DB {
                     website = (Uri.TryCreate(fields[numWeb], 0, out Uri web)) ?
                         web : null;
 
-                    /// Add data file to the HasSet, with the correct values.
+                    /// Add file data to the HasSet, with the correct values.
                     database.Add(new Game(
                       Convert.ToInt32(fields[0]),
                       fields[1],
